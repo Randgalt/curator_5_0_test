@@ -12,6 +12,7 @@
     <modules>
         <module>binary</module>
         <module>test</module>
+        <module>combo</module>
     </modules>
 
     <build>

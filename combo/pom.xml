@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>curator-5_0-test</artifactId>
+        <groupId>curator-5_0-test</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>combo</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>curator-5_0-test</groupId>
+            <artifactId>binary</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>27.0.1-jre</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.curator</groupId>
+                                    <artifactId>curator-recipes</artifactId>
+                                    <version>4.3.0</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                                    <destFileName>curator-4_0-recipes.jar</destFileName>
+                                    <includes>
+                                        org/apache/curator/framework/recipes/cache/NodeCache*.*,
+                                        org/apache/curator/framework/recipes/cache/PathChildrenCache*.*,
+                                        org/apache/curator/framework/recipes/cache/*Operation.*,
+                                        org/apache/curator/framework/recipes/locks/ChildReaper*
+                                        org/apache/curator/framework/recipes/locks/Reaper*,
+                                        org/apache/curator/framework/recipes/nodes/PersistentNode*,
+                                        org/apache/curator/framework/recipes/queue/DistributedDelayQueue*,
+                                        org/apache/curator/framework/recipes/queue/DistributedIdQueue*,
+                                        org/apache/curator/framework/recipes/queue/DistributedPriorityQueue*,
+                                        org/apache/curator/framework/recipes/queue/DistributedQueue*,
+                                        org/apache/curator/framework/recipes/queue/QueueBase*,
+                                        org/apache/curator/framework/recipes/shared/SharedValue*,
+                                        org/apache/curator/framework/recipes/shared/SharedValueReader*
+                                    </includes>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.apache.curator</groupId>
+                                    <artifactId>curator-framework</artifactId>
+                                    <version>4.3.0</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                                    <destFileName>curator-4_0-recipes.jar</destFileName>
+                                    <includes>
+                                        org/apache/curator/framework/listen/ListenerContainer*
+                                    </includes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>combo</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                    <version>27.0.1-jre</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>curator-5_0-test</groupId>
+                    <artifactId>binary</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.curator</groupId>
+                    <artifactId>curator-test</artifactId>
+                    <version>5.0.0-SNAPSHOT</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.curator</groupId>
+                    <artifactId>curator-framework</artifactId>
+                    <version>5.0.0-SNAPSHOT</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.curator</groupId>
+                    <artifactId>curator-recipes</artifactId>
+                    <version>5.0.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+</project>
